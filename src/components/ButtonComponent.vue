@@ -22,6 +22,10 @@ button {
 
   cursor: pointer;
   transition: 0.2s;
+
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
