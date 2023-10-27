@@ -3,14 +3,24 @@
 
   <nav>
     <ul>
-      <li>Home</li>
-      <li>Explore</li>
-      <li>About Us</li>
+      <RouterLink to="/">
+        <li>Home</li>
+      </RouterLink>
+
+      <RouterLink to="/explore">
+        <li>Explore</li>
+      </RouterLink>
+
+      <RouterLink to="/about">
+        <li>About Us</li>
+      </RouterLink>
     </ul>
   </nav>
 
   <div>
-    <ButtonComponent text="Upload" />
+    <RouterLink to="/upload">
+      <ButtonComponent text="Upload" />
+    </RouterLink>
     <ButtonComponent text="Delete" style="border-color: red; background: red" />
   </div>
 </template>

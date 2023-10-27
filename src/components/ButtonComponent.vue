@@ -15,7 +15,7 @@ button {
   background: none;
 
   padding-block: 8px;
-  padding-inline: 15px;
+  min-width: 120px;
 
   color: rgb(30, 30, 30);
   border: 2px solid #1e55b3;
