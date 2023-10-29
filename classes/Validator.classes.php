@@ -1,5 +1,7 @@
 <?php
 
+require_once("Database.classes.php");
+
 class Validator
 {
     private string $jobTitle;
@@ -38,7 +40,31 @@ class Validator
             array_push($this->errors, "Invalid job type. Please select from the options.");
         }
 
+        if ($this->validateCategory() === false) {
+            array_push($this->errors, "Invalid job category. Please select from the options.");
+        }
+
         return $this->errors;
+    }
+
+    private function validateCategory()
+    {
+        $category = $this->jobCategory;
+
+        $db = new Database();
+        $table = "job_categories";
+        $condition = "job_category = '$category'";
+        $jobCategory = $db->fetch($table, $condition);
+
+        if (count($jobCategory) > 0) {
+            if (strcmp($category, $jobCategory[0]['job_category']) === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     private function validateTitle()
