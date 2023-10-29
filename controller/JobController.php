@@ -18,7 +18,14 @@ if (isset($data['action'])) {
                 uploadJob($data['formData']);
             }
             break;
+        case 'getJobCategories':
+            getJobCategories();
+            break;
     }
+}
+
+function getJobCategories()
+{
 }
 
 function uploadJob(array $formData)

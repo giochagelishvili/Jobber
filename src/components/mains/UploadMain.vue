@@ -104,7 +104,23 @@ export default {
       } catch (error) {
         console.error('Error:', error)
       }
+    },
+    async getJobCategories() {
+      try {
+        const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
+          action: 'getJobCategories'
+        })
+
+        console.log(response.data)
+
+        // Log the error into the console
+      } catch (error) {
+        console.error('Error:', error)
+      }
     }
+  },
+  mounted() {
+    this.getJobCategories()
   }
 }
 </script>
