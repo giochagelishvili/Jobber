@@ -48,14 +48,29 @@ class Validator
             array_push($this->errors, "Description must be at least 100 and less than 2500 characters.");
         }
 
+        if ($this->validateRequirements() === false) {
+            array_push($this->errors, "Requirements must be at least 10 and less than 500 characters.");
+        }
+
         return $this->errors;
+    }
+
+    private function validateRequirements()
+    {
+        $requirements = $this->jobRequirements;
+        $length = strlen($requirements);
+
+        if ($length < 10 || $length > 500) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private function validateDescription()
     {
         $description = $this->jobDescription;
         $length = strlen($description);
-        echo $length;
 
         if ($length < 100 || $length > 2500) {
             return false;
