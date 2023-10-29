@@ -40,7 +40,19 @@ function uploadJob(array $formData)
         exit();
     }
 
-    $validator = new Validator();
+    $validator = new Validator(
+        $formData['jobTitle'],
+        $formData['jobLocation'],
+        $formData['jobType'],
+        $formData['jobCategory'],
+        $formData['jobDescription'],
+        $formData['jobRequirements'],
+        $formData['salaryType'],
+        $formData['salaryAmount']
+    );
+    $validation = $validator->validateForm();
+
+    print_r($validation);
 }
 
 // Decodes received data
