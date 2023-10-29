@@ -26,6 +26,9 @@ if (isset($data['action'])) {
 
 function getJobCategories()
 {
+    $db = new Database();
+    $jobCategories = $db->fetch('job_categories');
+    echo json_encode($jobCategories);
 }
 
 function uploadJob(array $formData)
