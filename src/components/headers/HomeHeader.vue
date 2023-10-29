@@ -21,7 +21,6 @@
     <RouterLink to="/upload">
       <ButtonComponent text="Upload" />
     </RouterLink>
-    <ButtonComponent text="Delete" style="border-color: red; background: red" />
   </div>
 </template>
 

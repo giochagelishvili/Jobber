@@ -33,25 +33,28 @@
   </div>
 
   <div>
-    <ButtonComponent
-      text="See All Jobs"
-      style="
-        margin-top: 20px;
-        background: #3979e7;
-        color: #fff;
-        border-color: #3979e7;
-        padding-inline: 20px;
-      "
-    />
+    <RouterLink to="/explore">
+      <ButtonComponent
+        text="See All Jobs"
+        style="
+          margin-top: 20px;
+          background: #3979e7;
+          color: #fff;
+          border-color: #3979e7;
+          padding-inline: 20px;
+        "
+      />
+    </RouterLink>
   </div>
 </template>
 
 <script>
+import { RouterLink } from 'vue-router'
 import ButtonComponent from '../ButtonComponent.vue'
 
 export default {
   name: 'HomeMain',
-  components: { ButtonComponent }
+  components: { ButtonComponent, RouterLink }
 }
 </script>
 
