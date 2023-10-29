@@ -25,10 +25,10 @@
         <label for="jobType">Job Type: </label>
         <select name="jobType" id="jobType">
           <option selected disabled>Select</option>
-          <option value="fullTime">Full-Time</option>
-          <option value="partTime">Part-Time</option>
-          <option value="contract">Contract</option>
-          <option value="internship">Internship</option>
+          <option value="Full-Time">Full-Time</option>
+          <option value="Part-Time">Part-Time</option>
+          <option value="Contract">Contract</option>
+          <option value="Internship">Internship</option>
         </select>
       </div>
 
@@ -116,9 +116,9 @@ export default {
           this.$nextTick(() => {
             this.scrollToErrorList()
           })
+        } else {
+          this.$router.push('/')
         }
-
-        console.log(response.data)
 
         // Log the error into the console
       } catch (error) {

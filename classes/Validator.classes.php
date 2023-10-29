@@ -165,7 +165,7 @@ class Validator
     private function validateType()
     {
         $type = $this->jobType;
-        $jobTypes = ["fullTime", "partTime", "contract", "internship"];
+        $jobTypes = ["Full-Time", "Part-Time", "Contract", "Internship"];
 
         foreach ($jobTypes as $jobType) {
             if (strcasecmp($jobType, $type) === 0) {
