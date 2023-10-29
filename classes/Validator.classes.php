@@ -44,7 +44,24 @@ class Validator
             array_push($this->errors, "Invalid job category. Please select from the options.");
         }
 
+        if ($this->validateDescription() === false) {
+            array_push($this->errors, "Description must be at least 100 and less than 2500 characters.");
+        }
+
         return $this->errors;
+    }
+
+    private function validateDescription()
+    {
+        $description = $this->jobDescription;
+        $length = strlen($description);
+        echo $length;
+
+        if ($length < 100 || $length > 2500) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private function validateCategory()
