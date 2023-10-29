@@ -85,10 +85,26 @@
 </template>
 
 <script>
+import axios, { formToJSON } from 'axios'
+
 export default {
   name: 'UploadMain',
   methods: {
-    async uploadJob() {}
+    async uploadJob(event) {
+      const formData = formToJSON(event.target)
+      try {
+        const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
+          action: 'uploadJob',
+          formData: formData
+        })
+
+        console.log(response.data)
+
+        // Log the error into the console
+      } catch (error) {
+        console.error('Error:', error)
+      }
+    }
   }
 }
 </script>
