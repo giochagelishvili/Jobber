@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import UploadHeader from '../components/UploadHeader.vue'
+import UploadHeader from '../components/headers/UploadHeader.vue'
 
 export default {
   name: 'UploadView',

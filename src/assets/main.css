@@ -19,6 +19,10 @@ header {
     padding-inline: 20px;
 }
 
+main {
+    padding-block: 30px;
+}
+
 a {
     text-decoration: none;
 }

@@ -18,15 +18,15 @@
   </nav>
 
   <div>
-    <RouterLink to="/upload">
-      <ButtonComponent text="Upload" />
+    <ButtonComponent text="Save" />
+    <RouterLink to="/">
+      <ButtonComponent text="Cancel" style="border-color: red; background: red" />
     </RouterLink>
-    <ButtonComponent text="Delete" style="border-color: red; background: red" />
   </div>
 </template>
 
 <script>
-import ButtonComponent from './ButtonComponent.vue'
+import ButtonComponent from '../ButtonComponent.vue'
 
 export default {
   name: 'HeaderComponent',
