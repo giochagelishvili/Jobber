@@ -18,7 +18,7 @@
   </nav>
 
   <div>
-    <ButtonComponent text="Save" />
+    <ButtonComponent form="uploadForm" text="Save" />
     <RouterLink to="/">
       <ButtonComponent text="Cancel" style="border-color: red; background: red" />
     </RouterLink>
