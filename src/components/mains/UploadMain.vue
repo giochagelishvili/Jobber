@@ -36,10 +36,13 @@
         <label for="jobCategory">Job Category: </label>
         <select name="jobCategory" id="jobCategory">
           <option selected disabled>Select</option>
-          <option value="IT">IT</option>
-          <option value="sales">Sales</option>
-          <option value="marketing">Marketing</option>
-          <option value="healthcare">Healthcare</option>
+          <option
+            v-for="category in jobCategories"
+            :key="category.category_id"
+            :value="category.job_category"
+          >
+            {{ category.job_category }}
+          </option>
         </select>
       </div>
 
@@ -89,6 +92,11 @@ import axios, { formToJSON } from 'axios'
 
 export default {
   name: 'UploadMain',
+  data() {
+    return {
+      jobCategories: []
+    }
+  },
   methods: {
     async uploadJob(event) {
       const formData = formToJSON(event.target)
@@ -110,9 +118,7 @@ export default {
         const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
           action: 'getJobCategories'
         })
-
-        console.log(response.data)
-
+        this.jobCategories = response.data
         // Log the error into the console
       } catch (error) {
         console.error('Error:', error)
