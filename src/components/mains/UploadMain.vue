@@ -82,6 +82,10 @@
         <label for="salaryAmount">Salary Amount($): </label>
         <input placeholder="e.g. 1500" type="number" name="salaryAmount" id="salaryAmount" />
       </div>
+
+      <ul v-if="errors.length != 0" ref="errorList">
+        <li v-for="error in errors" :key="error">{{ error }}</li>
+      </ul>
     </form>
     <img width="500" src="@/assets/illustration.svg" />
   </div>
@@ -94,7 +98,8 @@ export default {
   name: 'UploadMain',
   data() {
     return {
-      jobCategories: []
+      jobCategories: [],
+      errors: []
     }
   },
   methods: {
@@ -106,7 +111,12 @@ export default {
           formData: formData
         })
 
-        console.log(response.data)
+        if (response.data != true) {
+          this.errors = response.data
+          this.$nextTick(() => {
+            this.scrollToErrorList()
+          })
+        }
 
         // Log the error into the console
       } catch (error) {
@@ -122,6 +132,15 @@ export default {
         // Log the error into the console
       } catch (error) {
         console.error('Error:', error)
+      }
+    },
+    scrollToErrorList() {
+      const errorList = this.$refs.errorList
+
+      if (errorList) {
+        errorList.scrollIntoView({
+          behavior: 'smooth' // You can use 'auto' for immediate scrolling
+        })
       }
     }
   },
@@ -183,6 +202,24 @@ select {
   padding-inline: 10px;
   padding-block: 5px;
   min-width: 230px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  border-radius: 15px;
+
+  color: #fff;
+  background: red;
+
+  padding-block: 15px;
+  padding-inline-start: 45px;
+
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
 }
 
 @media screen and (min-width: 1280px) {

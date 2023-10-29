@@ -60,7 +60,11 @@ class Validator
             array_push($this->errors, "Salary amount must be numeric, greater than 0 value.");
         }
 
-        return $this->errors;
+        if (!empty($this->errors)) {
+            return $this->errors;
+        } else {
+            return true;
+        }
     }
 
     private function validateSalaryAmount()
@@ -151,7 +155,7 @@ class Validator
     {
         $location = $this->jobLocation;
 
-        if (preg_match('/^[A-Za-z0-9,]+$/', $location)) {
+        if (preg_match('/^[A-Za-z0-9, ]+$/', $location)) {
             return true;
         } else {
             return false;

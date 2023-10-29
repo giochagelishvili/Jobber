@@ -24,13 +24,6 @@ if (isset($data['action'])) {
     }
 }
 
-function getJobCategories()
-{
-    $db = new Database();
-    $jobCategories = $db->fetch('job_categories');
-    echo json_encode($jobCategories);
-}
-
 function uploadJob(array $formData)
 {
     $errors = [];
@@ -60,10 +53,23 @@ function uploadJob(array $formData)
         $formData['salaryType'],
         $formData['salaryAmount']
     );
+
     $validation = $validator->validateForm();
 
-    print_r($validation);
+    if ($validation !== true) {
+        echo json_encode($validation);
+        exit();
+    }
 }
+
+function getJobCategories()
+{
+    $db = new Database();
+    $jobCategories = $db->fetch('job_categories');
+    echo json_encode($jobCategories);
+}
+
+
 
 // Decodes received data
 function decodeData()
