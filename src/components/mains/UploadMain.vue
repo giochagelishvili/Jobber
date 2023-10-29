@@ -88,9 +88,7 @@
 export default {
   name: 'UploadMain',
   methods: {
-    async uploadJob() {
-      console.log('Clicked')
-    }
+    async uploadJob() {}
   }
 }
 </script>
