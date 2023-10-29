@@ -31,6 +31,19 @@
       </button>
     </form>
   </div>
+
+  <div>
+    <ButtonComponent
+      text="See All Jobs"
+      style="
+        margin-top: 20px;
+        background: #3979e7;
+        color: #fff;
+        border-color: #3979e7;
+        padding-inline: 20px;
+      "
+    />
+  </div>
 </template>
 
 <script>

@@ -6,7 +6,6 @@
 }
 
 body {
-    padding: 20px;
     background: #fcfcfc;
 }
 
@@ -16,11 +15,21 @@ header {
     justify-content: space-between;
     width: 100%;
 
-    padding-inline: 20px;
+    padding-inline: 40px;
+    padding-block: 20px;
 }
 
 main {
     padding-block: 30px;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #131E32;
+
+    padding-block: 20px;
 }
 
 a {
