@@ -52,7 +52,25 @@ class Validator
             array_push($this->errors, "Requirements must be at least 10 and less than 500 characters.");
         }
 
+        if ($this->validateSalaryType() === false) {
+            array_push($this->errors, "Invalid salary type. Please select from the options.");
+        }
+
         return $this->errors;
+    }
+
+    private function validateSalaryType()
+    {
+        $type = $this->salaryType;
+        $salaryTypes = ["Hourly", "Weekly", "Monthly"];
+
+        foreach ($salaryTypes as $salaryType) {
+            if (strcmp($type, $salaryType) === 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private function validateRequirements()

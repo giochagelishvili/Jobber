@@ -72,9 +72,9 @@
         <label for="salaryType">Salary Type: </label>
         <select name="salaryType" id="salaryType">
           <option selected disabled>Select</option>
-          <option value="hourly">Hourly</option>
-          <option value="weekly">Weekly</option>
-          <option value="monthly">Monthly</option>
+          <option value="Hourly">Hourly</option>
+          <option value="Weekly">Weekly</option>
+          <option value="Monthly">Monthly</option>
         </select>
       </div>
 
