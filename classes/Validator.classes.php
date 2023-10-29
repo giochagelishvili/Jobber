@@ -56,7 +56,26 @@ class Validator
             array_push($this->errors, "Invalid salary type. Please select from the options.");
         }
 
+        if ($this->validateSalaryAmount() === false) {
+            array_push($this->errors, "Salary amount must be numeric, greater than 0 value.");
+        }
+
         return $this->errors;
+    }
+
+    private function validateSalaryAmount()
+    {
+        $amount = $this->salaryAmount;
+
+        if (is_numeric($amount)) {
+            if ($amount > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     private function validateSalaryType()
