@@ -111,12 +111,14 @@ export default {
           formData: formData
         })
 
-        if (response.data != true) {
+        if (Array.isArray(response.data) === true) {
           this.errors = response.data
           this.$nextTick(() => {
             this.scrollToErrorList()
           })
         }
+
+        console.log(response.data)
 
         // Log the error into the console
       } catch (error) {

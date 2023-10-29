@@ -43,15 +43,25 @@ function uploadJob(array $formData)
         exit();
     }
 
+    $jobTitle = $formData['jobTitle'];
+    $jobLocation = $formData['jobLocation'];
+    $jobType = $formData['jobType'];
+    $jobCategory = $formData['jobCategory'];
+    $jobDescription = $formData['jobDescription'];
+    $jobRequirements = $formData['jobRequirements'];
+    $salaryType = $formData['salaryType'];
+    $salaryAmount = $formData['salaryAmount'];
+
+
     $validator = new Validator(
-        $formData['jobTitle'],
-        $formData['jobLocation'],
-        $formData['jobType'],
-        $formData['jobCategory'],
-        $formData['jobDescription'],
-        $formData['jobRequirements'],
-        $formData['salaryType'],
-        $formData['salaryAmount']
+        $jobTitle,
+        $jobLocation,
+        $jobType,
+        $jobCategory,
+        $jobDescription,
+        $jobRequirements,
+        $salaryType,
+        $salaryAmount,
     );
 
     $validation = $validator->validateForm();
@@ -60,6 +70,20 @@ function uploadJob(array $formData)
         echo json_encode($validation);
         exit();
     }
+
+    $db = new Database();
+    $table = "jobs(job_title, job_location, job_type, job_category, job_description, job_requirements, salary_type, salary_amount)";
+    $values = [
+        $jobTitle,
+        $jobLocation,
+        $jobType,
+        $jobCategory,
+        $jobDescription,
+        $jobRequirements,
+        $salaryType,
+        $salaryAmount,
+    ];
+    $db->insert($table, $values);
 }
 
 function getJobCategories()
@@ -68,8 +92,6 @@ function getJobCategories()
     $jobCategories = $db->fetch('job_categories');
     echo json_encode($jobCategories);
 }
-
-
 
 // Decodes received data
 function decodeData()
