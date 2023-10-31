@@ -21,7 +21,17 @@ if (isset($data['action'])) {
         case 'getJobCategories':
             getJobCategories();
             break;
+        case 'getAllJobs':
+            getAllJobs();
+            break;
     }
+}
+
+function getAllJobs()
+{
+    $db = new Database();
+    $jobs = $db->fetch("jobs");
+    echo json_encode($jobs);
 }
 
 function uploadJob(array $formData)

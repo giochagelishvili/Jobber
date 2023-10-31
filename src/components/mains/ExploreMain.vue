@@ -33,7 +33,10 @@
       </div>
     </div>
   </section>
-  <section id="job-list-section"></section>
+  <section id="job-list-section">
+    <div v-if="jobs.length > 0"></div>
+    <h1 v-else>No jobs</h1>
+  </section>
 </template>
 
 <script>
@@ -75,6 +78,7 @@ export default {
   },
   mounted() {
     this.getJobCategories()
+    this.getAllJobs()
   }
 }
 </script>
