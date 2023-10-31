@@ -1,5 +1,5 @@
 <template>
-  <section class="filter-section">
+  <section id="filter-section">
     <div>
       <select name="categoryFilter" id="categoryFilter">
         <option selected disabled>Category</option>
@@ -11,6 +11,7 @@
           {{ jobCategory.job_category }}
         </option>
       </select>
+
       <select name="typeFilter" id="typeFilter">
         <option selected disabled>Job Type</option>
         <option value="Full-Time">Full-Time</option>
@@ -18,18 +19,21 @@
         <option value="Contract">Contract</option>
         <option value="Internship">Internship</option>
       </select>
+
       <select name="salaryTypeFilter" id="salaryTypeFilt">
         <option selected disabled>Salary Type</option>
         <option value="Hourly">Hourly</option>
         <option value="Weekly">Weekly</option>
         <option value="Monthly">Monthly</option>
       </select>
+
       <div class="search-bar-div">
         <input placeholder="'e.g. Marketing'" type="text" name="jobSearch" id="jobSearch" />
         <span class="material-symbols-outlined"> search </span>
       </div>
     </div>
   </section>
+  <section id="job-list-section"></section>
 </template>
 
 <script>
@@ -39,7 +43,8 @@ export default {
   name: 'ExploreMain',
   data() {
     return {
-      jobCategories: []
+      jobCategories: [],
+      jobs: []
     }
   },
   methods: {
@@ -53,6 +58,19 @@ export default {
       } catch (error) {
         console.error('Error:', error)
       }
+    },
+    async getAllJobs() {
+      try {
+        const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
+          action: 'getAllJobs'
+        })
+        this.jobs = response.data
+
+        console.log(this.jobs)
+        // Log the error into the console
+      } catch (error) {
+        console.error('Error:', error)
+      }
     }
   },
   mounted() {
@@ -62,13 +80,13 @@ export default {
 </script>
 
 <style scoped>
-.filter-section {
+#filter-section {
   width: 100%;
   padding-block: 25px;
   background: #3976de;
 }
 
-.filter-section div {
+#filter-section div {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
