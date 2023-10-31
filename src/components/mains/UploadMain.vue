@@ -1,6 +1,6 @@
 <template>
   <div class="grid-container">
-    <form id="uploadForm" method="post" @submit.prevent="uploadJob">
+    <form id="uploadForm" ref="uploadForm" method="post" @submit.prevent="uploadJob">
       <p>
         Please fill out the form. <br />
         All fields are necesarry.
@@ -117,6 +117,7 @@ export default {
             this.scrollToErrorList()
           })
         } else {
+          this.$refs.uploadForm.reset()
           this.$router.push('/')
         }
 
