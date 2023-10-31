@@ -3,12 +3,26 @@
     <div>
       <select name="categoryFilter" id="categoryFilter">
         <option selected disabled>Category</option>
+        <option
+          v-for="jobCategory in jobCategories"
+          :key="jobCategory.category_id"
+          :value="jobCategory.job_category"
+        >
+          {{ jobCategory.job_category }}
+        </option>
       </select>
       <select name="typeFilter" id="typeFilter">
         <option selected disabled>Job Type</option>
+        <option value="Full-Time">Full-Time</option>
+        <option value="Part-Time">Part-Time</option>
+        <option value="Contract">Contract</option>
+        <option value="Internship">Internship</option>
       </select>
       <select name="salaryTypeFilter" id="salaryTypeFilt">
         <option selected disabled>Salary Type</option>
+        <option value="Hourly">Hourly</option>
+        <option value="Weekly">Weekly</option>
+        <option value="Monthly">Monthly</option>
       </select>
       <div class="search-bar-div">
         <input placeholder="'e.g. Marketing'" type="text" name="jobSearch" id="jobSearch" />
@@ -19,8 +33,31 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'ExploreMain'
+  name: 'ExploreMain',
+  data() {
+    return {
+      jobCategories: []
+    }
+  },
+  methods: {
+    async getJobCategories() {
+      try {
+        const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
+          action: 'getJobCategories'
+        })
+        this.jobCategories = response.data
+        // Log the error into the console
+      } catch (error) {
+        console.error('Error:', error)
+      }
+    }
+  },
+  mounted() {
+    this.getJobCategories()
+  }
 }
 </script>
 
