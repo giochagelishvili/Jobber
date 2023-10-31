@@ -35,16 +35,16 @@
   </section>
   <section id="job-list-section">
     <div v-if="jobs.length > 0">
-      <JobContainer
-        v-for="job in jobs"
-        :key="job.job_id"
-        :title="job.job_title"
-        :location="job.job_location"
-        :type="job.job_type"
-        :category="job.job_category"
-        :salary="job.salary_amount"
-        :salary_type="job.salary_type"
-      />
+      <RouterLink v-for="job in jobs" :key="job.job_id" :to="`/job?id=${job.job_id}`">
+        <JobContainer
+          :title="job.job_title"
+          :location="job.job_location"
+          :type="job.job_type"
+          :category="job.job_category"
+          :salary="job.salary_amount"
+          :salary_type="job.salary_type"
+        />
+      </RouterLink>
     </div>
     <h1 v-else>No jobs</h1>
   </section>
@@ -81,8 +81,6 @@ export default {
           action: 'getAllJobs'
         })
         this.jobs = response.data
-
-        console.log(this.jobs)
         // Log the error into the console
       } catch (error) {
         console.error('Error:', error)

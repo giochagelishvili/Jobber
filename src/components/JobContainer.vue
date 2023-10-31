@@ -11,19 +11,7 @@
 <script>
 export default {
   name: 'JobContainer',
-  data() {
-    return {
-      jobId: 0
-    }
-  },
-  props: ['id', 'title', 'location', 'type', 'category', 'salary', 'salary_type'],
-  watch: {
-    id: {
-      handler(newId) {
-        this.jobId = newId
-      }
-    }
-  }
+  props: ['id', 'title', 'location', 'type', 'category', 'salary', 'salary_type']
 }
 </script>
 
@@ -33,6 +21,7 @@ div {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  transition: 0.2s;
 }
 
 h1 {
@@ -47,5 +36,9 @@ h1 {
 
 .charcoal {
   background: #e9e9e9;
+}
+
+div:hover {
+  transform: scale(1.02);
 }
 </style>
