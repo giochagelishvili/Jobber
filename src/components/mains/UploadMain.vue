@@ -103,22 +103,31 @@ export default {
     }
   },
   methods: {
+    // Sends post request to controller passing 'uploadJob' action and form data
+    // Controller validates the form and returns errors (if any)
+    // If form data is valid new job is inserted in the database and user is redirected to /explore page
     async uploadJob(event) {
       const formData = formToJSON(event.target)
+
       try {
         const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
           action: 'uploadJob',
           formData: formData
         })
 
+        // If response returns array it means there are errors in the form
         if (Array.isArray(response.data) === true) {
+          // Assign response data to errors array
           this.errors = response.data
+
+          // Scroll user to the errors
           this.$nextTick(() => {
             this.scrollToErrorList()
           })
         } else {
+          // In case of no errors reset the form and redirect user to /explore page
           this.$refs.uploadForm.reset()
-          this.$router.push('/')
+          this.$router.push('/explore')
         }
 
         // Log the error into the console
@@ -126,6 +135,10 @@ export default {
         console.error('Error:', error)
       }
     },
+
+    // Send post request to controller passing 'getJobCategories' action
+    // Controller selects everything from "job_categories" table
+    // Results are displayed in #jobCategory selector
     async getJobCategories() {
       try {
         const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
@@ -137,6 +150,8 @@ export default {
         console.error('Error:', error)
       }
     },
+
+    // Scrolls the page to error list
     scrollToErrorList() {
       const errorList = this.$refs.errorList
 

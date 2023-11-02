@@ -61,6 +61,7 @@ export default {
     }
   },
   methods: {
+    // Encode keyword and redirect user to /explore page passing keyword (e.g. /explore?keyword=c#)
     search() {
       const encodedKeyword = encodeURIComponent(this.keyword)
       const url = `/explore?keyword=${encodedKeyword}`

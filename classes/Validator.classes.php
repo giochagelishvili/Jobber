@@ -67,6 +67,8 @@ class Validator
         }
     }
 
+    // Returns true if salary amount is greater than 0 numeric value
+    // Else returns false
     private function validateSalaryAmount()
     {
         $amount = $this->salaryAmount;
@@ -82,6 +84,8 @@ class Validator
         }
     }
 
+    // Returns true if salary type matches one of the values inside $salaryTypes array
+    // Else returns false
     private function validateSalaryType()
     {
         $type = $this->salaryType;
@@ -96,6 +100,8 @@ class Validator
         return false;
     }
 
+    // Returns true if requirements text is more than 10 and less than 500 characters
+    // Else returns false
     private function validateRequirements()
     {
         $requirements = $this->jobRequirements;
@@ -108,6 +114,8 @@ class Validator
         }
     }
 
+    // Returns true if description text is more than 100 and less than 2500 characters
+    // Else returns false
     private function validateDescription()
     {
         $description = $this->jobDescription;
@@ -120,6 +128,8 @@ class Validator
         }
     }
 
+    // Returns true if given category exists in the database
+    // Else returns false
     private function validateCategory()
     {
         $category = $this->jobCategory;
@@ -140,6 +150,8 @@ class Validator
         }
     }
 
+    // Returns true if title is less than 255 characters
+    // Else returns false
     private function validateTitle()
     {
         $title = $this->jobTitle;
@@ -151,6 +163,8 @@ class Validator
         }
     }
 
+    // Returns true if location contains letters, numbers and ',' symbols only
+    // Else returns false
     private function validateLocation()
     {
         $location = $this->jobLocation;
@@ -162,6 +176,8 @@ class Validator
         }
     }
 
+    // Returns true if job type matches one of the values from $jobTypes array
+    // Else returns false
     private function validateType()
     {
         $type = $this->jobType;

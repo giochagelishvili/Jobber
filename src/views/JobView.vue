@@ -46,6 +46,9 @@ export default {
     }
   },
   methods: {
+    // Send post request to the controller passing 'getJob' action and job ID
+    // Controller selects job from the database according to passed ID and returns results as JSON object
+    // Results are displayed on the page
     async getJob() {
       let jobId = this.$route.query.id
 

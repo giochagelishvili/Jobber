@@ -79,29 +79,42 @@ export default {
     }
   },
   methods: {
+    // Send post request to controller, passing 'getJobCategories' action
+    // Controller selects everything from 'job_categories' table
     async getJobCategories() {
       try {
         const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
           action: 'getJobCategories'
         })
+
+        // Assign received data to 'jobCategories' array
         this.jobCategories = response.data
         // Log the error into the console
       } catch (error) {
         console.error('Error:', error)
       }
     },
+
+    // Send post request to controller, passing 'getAllJobs' action
+    // Controller selects everything from "jobs" table
     async getAllJobs() {
       try {
         const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
           action: 'getAllJobs'
         })
+
+        // Assign received data to 'jobs' array
         this.jobs = response.data
         // Log the error into the console
       } catch (error) {
         console.error('Error:', error)
       }
     },
+
+    // Send post request to controller, passing 'applyFilters' action and applied filters
+    // Controller selects jobs according to selected filters
     async applyFilter() {
+      // Transform filter form to JSON object
       let form = document.getElementById('filterForm')
       let formData = formToJSON(form)
 
@@ -111,18 +124,24 @@ export default {
           formData: formData
         })
 
+        // Assign filtered jobs to 'jobs' array
         this.jobs = response.data
         // Log the error into the console
       } catch (error) {
         console.error('Error:', error)
       }
     },
+
+    // Send post request to controller, passing 'search' action and keyword
+    // Controller selects job(s) which 'job_title' includes passed keyword
     async search() {
       try {
         const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
           action: 'search',
           keyword: this.keyword
         })
+
+        // Assign filtered jobs to 'jobs' array
         this.jobs = response.data
         // Log the error into the console
       } catch (error) {
@@ -134,6 +153,7 @@ export default {
     this.getJobCategories()
     this.getAllJobs()
 
+    // Keyword is provided in URL if user ran search event from 'HomeMain' component
     if (this.$route.query.keyword) {
       const search = window.location.search.substring(1)
       const params = new URLSearchParams(search)
