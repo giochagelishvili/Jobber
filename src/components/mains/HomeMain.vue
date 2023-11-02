@@ -23,13 +23,13 @@
   </div>
 
   <div>
-    <form class="search-bar-form">
+    <div class="search-bar-div">
       <span class="material-symbols-outlined"> work </span>
-      <input placeholder="Job Title" type="text" name="job" id="job" />
-      <button type="submit">
+      <input placeholder="Job Title" type="text" name="job" id="job" v-model="keyword" />
+      <button @click="search">
         <span class="material-symbols-outlined"> search </span>
       </button>
-    </form>
+    </div>
   </div>
 
   <div>
@@ -54,7 +54,19 @@ import ButtonComponent from '../ButtonComponent.vue'
 
 export default {
   name: 'HomeMain',
-  components: { ButtonComponent, RouterLink }
+  components: { ButtonComponent, RouterLink },
+  data() {
+    return {
+      keyword: ''
+    }
+  },
+  methods: {
+    search() {
+      const encodedKeyword = encodeURIComponent(this.keyword)
+      const url = `/explore?keyword=${encodedKeyword}`
+      this.$router.push(url)
+    }
+  }
 }
 </script>
 
@@ -95,7 +107,7 @@ form {
   margin-top: 25px;
 }
 
-.search-bar-form {
+.search-bar-div {
   padding-inline-start: 15px;
   margin-top: 25px;
 
@@ -110,11 +122,11 @@ form {
   overflow: hidden;
 }
 
-.search-bar-form span {
+.search-bar-div span {
   color: #adadad;
 }
 
-.search-bar-form input {
+.search-bar-div input {
   font-size: 16px;
 
   padding-inline: 5px;
@@ -127,11 +139,11 @@ form {
   width: 100%;
 }
 
-.search-bar-form input:focus {
+.search-bar-div input:focus {
   outline: none;
 }
 
-.search-bar-form button {
+.search-bar-div button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,11 +157,11 @@ form {
   transition: 0.2s;
 }
 
-.search-bar-form button:hover {
+.search-bar-div button:hover {
   background: #4787f7;
 }
 
-.search-bar-form button span {
+.search-bar-div button span {
   font-size: 28px;
   color: #fff;
 }

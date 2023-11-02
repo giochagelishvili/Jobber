@@ -36,7 +36,13 @@
       </select>
 
       <div class="search-bar-div">
-        <input placeholder="'e.g. Marketing'" type="text" name="jobSearch" id="jobSearch" />
+        <input
+          placeholder="'e.g. Marketing'"
+          type="text"
+          name="jobSearch"
+          id="jobSearch"
+          v-model="keyword"
+        />
         <span @click="search" class="material-symbols-outlined"> search </span>
       </div>
     </form>
@@ -68,7 +74,8 @@ export default {
   data() {
     return {
       jobCategories: [],
-      jobs: []
+      jobs: [],
+      keyword: ''
     }
   },
   methods: {
@@ -111,15 +118,11 @@ export default {
       }
     },
     async search() {
-      let searchInput = document.getElementById('jobSearch')
-      let keyword = searchInput.value
-
       try {
         const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
           action: 'search',
-          keyword: keyword
+          keyword: this.keyword
         })
-
         this.jobs = response.data
         // Log the error into the console
       } catch (error) {
@@ -130,6 +133,14 @@ export default {
   mounted() {
     this.getJobCategories()
     this.getAllJobs()
+
+    if (this.$route.query.keyword) {
+      const search = window.location.search.substring(1)
+      const params = new URLSearchParams(search)
+      const keywordValue = decodeURIComponent(params.get('keyword'))
+      this.keyword = keywordValue
+      this.search()
+    }
   }
 }
 </script>
