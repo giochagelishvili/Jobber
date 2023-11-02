@@ -1,35 +1,14 @@
-# Jobber
+# Jobber [PHP + Vue.js]
 
-This template should help get you started developing with Vue 3 in Vite.
+Jobber is a job listing web application where user can see, search, filter and upload jobs. Created on <strong>Vue 3</strong> and <strong>REST API</strong> coded in <strong>PHP 8+</strong> using <strong>OOP principles</strong>.
 
-## Recommended IDE Setup
+<h2>Description</h2>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+<ul>
+<li>Application has 5 (home, job upload, explore, job view & about) pages. <strong>Vue router</strong> is used to maintain <strong>SPA</strong> while navigating the website.</li>
+<li>Job categories are retrieved from the database <strong>instead of hardcoding</strong> them in the front-end. This keeps <strong>Vue code clean, simple and easily maintainable</strong>, avoiding potential trouble in case of having <strong>100+ different job categories.</strong></li>
+<li>In order to upload the job, inserted form data has to meet the requirements. In case of providing invalid data, <strong>errors are displayed on the same page without reloading</strong>.</li>
+<li>After the form data is validated and new job is successfully saved in the database, the user is redirected to the explore page, <strong>using Vue router</strong>, where they're presented the updated list of jobs</li>
+<li>Explore page has 3 <strong>filter options</strong> (job category, job type & salary type). The user is able to apply several filters together, or one at a time.</li>
+<li>Search option makes it easier for the user to find what they're looking for. <strong>Search fields</strong> are presented on the home and explore pages.</li>
+</ul>
