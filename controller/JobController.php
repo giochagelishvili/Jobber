@@ -34,25 +34,35 @@ if (isset($data['action'])) {
 
 function applyFilters(array $filters)
 {
-    $categoryFilter = '';
-    $jobTypeFilter = '';
-    $salaryTypeFilter = '';
+    $table = "jobs";
+    $condition = "";
 
     if (isset($filters['categoryFilter']) && $filters['categoryFilter'] != '') {
         $categoryFilter = $filters['categoryFilter'];
+        $condition = $condition . "job_category = '$categoryFilter'";
     }
 
     if (isset($filters['typeFilter']) && $filters['typeFilter'] != '') {
         $jobTypeFilter = $filters['typeFilter'];
+        if ($condition != "") {
+            $condition = $condition . "AND job_type = '$jobTypeFilter'";
+        } else {
+            $condition = $condition . "job_type = '$jobTypeFilter'";
+        }
     }
 
     if (isset($filters['salaryTypeFilter']) && $filters['salaryTypeFilter'] != '') {
         $salaryTypeFilter = $filters['salaryTypeFilter'];
+        if ($condition != "") {
+            $condition = $condition . "AND salary_type = '$salaryTypeFilter'";
+        } else {
+            $condition = "salary_type = '$salaryTypeFilter'";
+        }
     }
 
-    echo $categoryFilter;
-    echo $jobTypeFilter;
-    echo $salaryTypeFilter;
+    $db = new Database();
+    $filteredProducts = $db->fetch($table, $condition);
+    echo json_encode($filteredProducts);
 }
 
 function getAllJobs()

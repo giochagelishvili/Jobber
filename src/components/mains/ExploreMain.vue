@@ -103,7 +103,7 @@ export default {
           formData: formData
         })
 
-        console.log(response.data)
+        this.jobs = response.data
         // Log the error into the console
       } catch (error) {
         console.error('Error:', error)
