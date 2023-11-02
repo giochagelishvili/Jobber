@@ -29,7 +29,22 @@ if (isset($data['action'])) {
                 applyFilters($data['formData']);
             }
             break;
+        case 'search':
+            if (isset($data['keyword'])) {
+                search($data['keyword']);
+            }
+            break;
     }
+}
+
+function search(string $keyword)
+{
+    $table = "jobs";
+    $condition = "job_title LIKE '%" . $keyword . "%'";
+
+    $db = new Database();
+    $relatedJobs = $db->fetch($table, $condition);
+    echo json_encode($relatedJobs);
 }
 
 function applyFilters(array $filters)
