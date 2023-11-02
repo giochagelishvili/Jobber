@@ -3,16 +3,34 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'JobView',
   data() {
     return {
-      jobId: null
+      job: []
+    }
+  },
+  methods: {
+    async getJob() {
+      let jobId = this.$route.query.id
+
+      try {
+        const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
+          action: 'getJob',
+          jobId: jobId
+        })
+
+        console.log(response.data)
+        // Log the error into the console
+      } catch (error) {
+        console.error('Error:', error)
+      }
     }
   },
   created() {
-    this.jobId = this.$route.query.id
-    console.log(this.jobId)
+    this.getJob()
   }
 }
 </script>

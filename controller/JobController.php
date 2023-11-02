@@ -34,7 +34,23 @@ if (isset($data['action'])) {
                 search($data['keyword']);
             }
             break;
+        case 'getJob':
+            if (isset($data['jobId'])) {
+                getJob($data['jobId']);
+            }
+            break;
     }
+}
+
+function getJob(int $jobId)
+{
+    $table = "jobs";
+    $condition = "job_id = '$jobId'";
+
+    $db = new Database();
+    $job = $db->fetch($table, $condition);
+
+    echo json_encode($job);
 }
 
 function search(string $keyword)
