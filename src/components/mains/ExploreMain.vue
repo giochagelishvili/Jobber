@@ -1,6 +1,6 @@
 <template>
   <section id="filter-section">
-    <form method="post" id="filterForm">
+    <form @submit.prevent="search" id="filterForm">
       <select @change="applyFilter" name="categoryFilter" id="categoryFilter" ref="categoryFilter">
         <option selected disabled>Category</option>
         <option value="All">All</option>
@@ -29,6 +29,7 @@
         @change="applyFilter"
       >
         <option selected disabled>Salary Type</option>
+        <option value="All">All</option>
         <option value="Hourly">Hourly</option>
         <option value="Weekly">Weekly</option>
         <option value="Monthly">Monthly</option>

@@ -52,12 +52,12 @@ function applyFilters(array $filters)
     $table = "jobs";
     $condition = "";
 
-    if (isset($filters['categoryFilter']) && $filters['categoryFilter'] != '') {
+    if (isset($filters['categoryFilter']) && $filters['categoryFilter'] != '' && $filters['categoryFilter'] != "All") {
         $categoryFilter = $filters['categoryFilter'];
         $condition = $condition . "job_category = '$categoryFilter'";
     }
 
-    if (isset($filters['typeFilter']) && $filters['typeFilter'] != '') {
+    if (isset($filters['typeFilter']) && $filters['typeFilter'] != '' && $filters['typeFilter'] != "All") {
         $jobTypeFilter = $filters['typeFilter'];
         if ($condition != "") {
             $condition = $condition . "AND job_type = '$jobTypeFilter'";
@@ -66,7 +66,7 @@ function applyFilters(array $filters)
         }
     }
 
-    if (isset($filters['salaryTypeFilter']) && $filters['salaryTypeFilter'] != '') {
+    if (isset($filters['salaryTypeFilter']) && $filters['salaryTypeFilter'] != '' && $filters['salaryTypeFilter'] != "All") {
         $salaryTypeFilter = $filters['salaryTypeFilter'];
         if ($condition != "") {
             $condition = $condition . "AND salary_type = '$salaryTypeFilter'";
