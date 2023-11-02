@@ -24,7 +24,35 @@ if (isset($data['action'])) {
         case 'getAllJobs':
             getAllJobs();
             break;
+        case 'applyFilters':
+            if (isset($data['formData'])) {
+                applyFilters($data['formData']);
+            }
+            break;
     }
+}
+
+function applyFilters(array $filters)
+{
+    $categoryFilter = '';
+    $jobTypeFilter = '';
+    $salaryTypeFilter = '';
+
+    if (isset($filters['categoryFilter']) && $filters['categoryFilter'] != '') {
+        $categoryFilter = $filters['categoryFilter'];
+    }
+
+    if (isset($filters['typeFilter']) && $filters['typeFilter'] != '') {
+        $jobTypeFilter = $filters['typeFilter'];
+    }
+
+    if (isset($filters['salaryTypeFilter']) && $filters['salaryTypeFilter'] != '') {
+        $salaryTypeFilter = $filters['salaryTypeFilter'];
+    }
+
+    echo $categoryFilter;
+    echo $jobTypeFilter;
+    echo $salaryTypeFilter;
 }
 
 function getAllJobs()

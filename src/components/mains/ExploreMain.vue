@@ -1,8 +1,9 @@
 <template>
   <section id="filter-section">
-    <div>
-      <select name="categoryFilter" id="categoryFilter">
+    <form method="post" id="filterForm">
+      <select @change="applyFilter" name="categoryFilter" id="categoryFilter" ref="categoryFilter">
         <option selected disabled>Category</option>
+        <option value="All">All</option>
         <option
           v-for="jobCategory in jobCategories"
           :key="jobCategory.category_id"
@@ -12,15 +13,21 @@
         </option>
       </select>
 
-      <select name="typeFilter" id="typeFilter">
+      <select name="typeFilter" id="typeFilter" ref="typeFilter" @change="applyFilter">
         <option selected disabled>Job Type</option>
+        <option value="All">All</option>
         <option value="Full-Time">Full-Time</option>
         <option value="Part-Time">Part-Time</option>
         <option value="Contract">Contract</option>
         <option value="Internship">Internship</option>
       </select>
 
-      <select name="salaryTypeFilter" id="salaryTypeFilt">
+      <select
+        name="salaryTypeFilter"
+        id="salaryTypeFilter"
+        ref="salaryTypeFilter"
+        @change="applyFilter"
+      >
         <option selected disabled>Salary Type</option>
         <option value="Hourly">Hourly</option>
         <option value="Weekly">Weekly</option>
@@ -31,7 +38,7 @@
         <input placeholder="'e.g. Marketing'" type="text" name="jobSearch" id="jobSearch" />
         <span class="material-symbols-outlined"> search </span>
       </div>
-    </div>
+    </form>
   </section>
   <section id="job-list-section">
     <div v-if="jobs.length > 0">
@@ -51,7 +58,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios, { formToJSON } from 'axios'
 import JobContainer from '../JobContainer.vue'
 
 export default {
@@ -85,6 +92,22 @@ export default {
       } catch (error) {
         console.error('Error:', error)
       }
+    },
+    async applyFilter() {
+      let form = document.getElementById('filterForm')
+      let formData = formToJSON(form)
+
+      try {
+        const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
+          action: 'applyFilters',
+          formData: formData
+        })
+
+        console.log(response.data)
+        // Log the error into the console
+      } catch (error) {
+        console.error('Error:', error)
+      }
     }
   },
   mounted() {
@@ -101,6 +124,7 @@ export default {
   background: #3976de;
 }
 
+#filter-section form,
 #filter-section div {
   display: flex;
   align-items: center;
