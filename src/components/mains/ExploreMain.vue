@@ -36,7 +36,7 @@
 
       <div class="search-bar-div">
         <input placeholder="'e.g. Marketing'" type="text" name="jobSearch" id="jobSearch" />
-        <span class="material-symbols-outlined"> search </span>
+        <span @click="search" class="material-symbols-outlined"> search </span>
       </div>
     </form>
   </section>
@@ -104,6 +104,22 @@ export default {
         })
 
         this.jobs = response.data
+        // Log the error into the console
+      } catch (error) {
+        console.error('Error:', error)
+      }
+    },
+    async search() {
+      let searchInput = document.getElementById('jobSearch')
+      let keyword = searchInput.value
+
+      try {
+        const response = await axios.post('http://localhost/Jobber/controller/JobController.php', {
+          action: 'search',
+          keyword: keyword
+        })
+
+        console.log(response.data)
         // Log the error into the console
       } catch (error) {
         console.error('Error:', error)
