@@ -23,7 +23,7 @@
     </div>
     <h1 v-else>Couldn't find this job.</h1>
     <div class="hero-container">
-      <img src="@/assets/Asset 1.svg" />
+      <img src="@/assets/jobViewHero.svg" />
     </div>
   </main>
   <footer>
